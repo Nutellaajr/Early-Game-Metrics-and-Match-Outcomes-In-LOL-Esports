@@ -1,15 +1,14 @@
 # Gold, Kills, and Victory: Predicting Match Outcomes in League of Legends
 This is a project for DSC 80 at UCSD
-**Name:** Yao Ouyang
 
-This project explores how early-game statistics in professional League of Legends (LoL) esports — especially kills and gold at 25 minutes — can help predict a team’s match outcome. We also examine fairness across competitive regions by testing whether the model performs equally well for major vs minor league teams.
+**Name:** Yao Ouyang
 
 ---
 
 ## Introduction
 
-Does early-game performance dictate final victory in League of Legends?  
-Using data from Oracle’s Elixir, we analyze the predictive power of gold and kill stats at 25 minutes, and assess whether our model treats teams from different regions fairly.
+In professional League of Legends (LoL) esports, early-game performance is often seen as a key predictor of a team’s eventual victory. Metrics such as gold earned and kills secured in the first 25 minutes may offer meaningful insight into game momentum and team coordination. This project investigates whether these mid-game indicators — specifically, kills and gold at 25 minutes — can be used to predict match outcomes.
+We also explore role-based performance dynamics, comparing Mid laners and ADCs (Bot lane carries) to test common beliefs about who “carries” more often. Using data from Oracle’s Elixir, which includes statistics from hundreds of professional matches, we analyze trends across positions, assess missing data patterns, and build predictive models to classify wins and losses. Finally, we evaluate whether the model performs fairly across different regions — a key consideration in ensuring equitable performance in esports analytics.
 
 ---
 
