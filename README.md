@@ -69,7 +69,7 @@ ADCs show a similar but slightly lower kill distribution. Most have 0–3 kills 
 
 #### Combined Mid vs ADC  
 <iframe src="assets/killsat25-combine.html" width="800" height="500" frameborder="0"></iframe>  
-The combined histogram shows that **Mid laners generally outperform ADCs** in early-game kill counts.
+This histogram shows that at 25 minutes, the mid laner had more low kills, while the ADC had more high kills. This may indicate that the mid laner is more stable, while ADCs have a higher potential.
 
 ---
 
@@ -79,11 +79,11 @@ Next, we explored the **relationship between kills and gold at 25 minutes**, bro
 
 #### Kill vs Gold by Position  
 <iframe src="assets/killsat25-goldat25-by-position.html" width="800" height="500" frameborder="0"></iframe>  
-We observe a **strong positive correlation** between `killsat25` and `goldat25`. Players with higher kills tend to accumulate more gold. The clustering suggests that Mid and Jungle positions are more likely to generate high gold with high kills.
+Gold at 25 minutes is strongly influenced by kills but also varies by position. The scatter plot supports the idea that not all roles convert kills into gold at the same efficiency.
 
 #### Kill Distribution by Role  
 <iframe src="assets/killsat25-by-role.html" width="800" height="500" frameborder="0"></iframe>  
-This visualization highlights differences across roles, where Mid and Jungle tend to lead in early-game action, while Supports rarely exceed 2 kills.
+Despite the perception that Mid laners are the primary “carry” role, Bot lane players (ADCs) may secure more kills on average, though their performance is more variable. This could challenge traditional assumptions in LoL strategy.
 
 ---
 
