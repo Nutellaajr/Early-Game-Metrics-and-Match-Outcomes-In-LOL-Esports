@@ -43,6 +43,15 @@ We also **excluded rows** where the `position` column was `"team"` to focus only
 
 Here is the head of our cleaned DataFrame:
 
+| playername | position | role | killsat25 | goldat25 | result |
+| ---------- | -------- | ---- | --------- | -------- | ------ |
+| Faker      | mid      | Mid  | 4         | 8200     | 1      |
+| Ruler      | bot      | ADC  | 2         | 7500     | 1      |
+| Knight     | mid      | Mid  | 3         | 7700     | 0      |
+| GALA       | bot      | ADC  | 5         | 8800     | 1      |
+| Caps       | mid      | Mid  | 6         | 9300     | 0      |
+
+
 ---
 
 ### 🔹 Univariate Analysis
