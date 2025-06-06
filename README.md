@@ -202,6 +202,7 @@ We evaluated the performance of our baseline model using **accuracy** and the **
   - Precision: 0.59
   - Recall: 0.71
   - F1-score: 0.65
+    
 - **Class 1 (win)**:
   - Precision: 0.63
   - Recall: 0.49
@@ -221,21 +222,43 @@ This baseline model offers moderate predictive power, especially favoring the co
 
 ---
 
+
 ## Final Model
 
-We added 3 engineered features:
-- `kpg` = kills per minute  
-- `gold_per_kill` = gold efficiency  
-- `fb_indicator` = early-game momentum
+To improve upon our Baseline Model, we added two new features: `firstblood` and `firstdragon`. These features are categorical indicators of whether the team secured the first kill or the first dragon in a match, respectively. From a game dynamics perspective, these are strong early-game objectives that often reflect early momentum and map control — factors that can significantly influence a team's chance of winning. Including them captures more of the team’s performance in the first 25 minutes and complements our initial features, `killsat25` and `goldat25`.
 
-We used `GridSearchCV` to tune `C` and `penalty` for logistic regression.
+Since our target variable `result` is binary (win/loss), we used a classification approach. For our final model, we chose a `RandomForestClassifier`, which is well-suited to handle both numerical and categorical inputs, and captures nonlinear interactions between features without requiring extensive preprocessing. We used a pipeline to preprocess the data: numerical features were standardized using `StandardScaler`, and categorical features were one-hot encoded with `OneHotEncoder`.
 
-**Best parameters:**  
-- C = 0.1  
-- penalty = 'l2'
+We did not tune hyperparameters in this iteration, but we used `random_state=42` to ensure reproducibility. This model was trained using an 80/20 train-test split.
 
-**Test Accuracy:** 0.605 (similar to baseline)  
-Though accuracy didn’t improve, the model now accounts for game pace and early momentum.
+### Model Performance
+
+Our Final Model achieved a test accuracy of **0.707**, improving over the Baseline Model's accuracy of **0.605**. It also achieved a **macro F1-score of 0.71**, showing better balance in performance across both classes. In contrast, the baseline logistic regression model struggled with class imbalance and had an F1-score of **0.60**. Below is the breakdown of performance:
+
+- **Class 0 (loss)**:
+  - Precision: 0.74
+  - Recall: 0.67
+  - F1-score: 0.70
+    
+- **Class 1 (win)**:
+  - Precision: 0.68
+  - Recall: 0.75
+  - F1-score: 0.71
+
+- **Macro Average**:
+  - Precision: 0.71
+  - Recall: 0.71
+  - F1-score: 0.71
+
+- **Weighted Average**:
+  - Precision: 0.71
+  - Recall: 0.71
+  - F1-score: 0.71
+
+The improvement suggests that `firstblood` and `firstdragon` provide valuable early-game signals not captured by kills and gold alone. This confirms our hypothesis that capturing early strategic objectives is important for predicting match outcomes in professional League of Legends esports games.
+
+We consider this a meaningful performance gain and evidence that the Final Model captures the game’s dynamics more comprehensively than the baseline.
+
 
 ---
 
