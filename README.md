@@ -1,9 +1,6 @@
-# Early-Game-Metrics-and-Match-Outcomes-In-LOL-Esports
-This is a project for DSC 80 at UCSD
-
 # Gold, Kills, and Victory: Predicting Match Outcomes in League of Legends
-
-**Name:** Owen Ouyang
+This is a project for DSC 80 at UCSD
+**Name:** Yao Ouyang
 
 This project explores how early-game statistics in professional League of Legends (LoL) esports — especially kills and gold at 25 minutes — can help predict a team’s match outcome. We also examine fairness across competitive regions by testing whether the model performs equally well for major vs minor league teams.
 
@@ -35,10 +32,10 @@ We focused our early analysis on the performance of Mid laners and ADCs at 25 mi
 ### 🔹 Combined Mid vs ADC distribution
 <iframe src="assets/killsat25-combine.html" width="800" height="500" frameborder="0"></iframe>
 
-### 🔹 Kill distribution by all roles
+### 🔹 Kill distribution by roles (Mid vs ADC)
 <iframe src="assets/killsat25-by-role.html" width="800" height="500" frameborder="0"></iframe>
 
-### 🔹 Kills vs Gold at 25 Minutes by position
+### 🔹 Kills vs Gold at 25 Minutes by positions
 <iframe src="assets/killsat25-goldat25-by-position.html" width="800" height="500" frameborder="0"></iframe>
 
 
