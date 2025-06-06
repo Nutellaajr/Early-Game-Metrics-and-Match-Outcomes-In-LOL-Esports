@@ -137,19 +137,33 @@ This histogram shows clear differences in `firstblood` outcomes between rows whe
 
 ---
 
----
+
 
 ## Hypothesis Testing
 
-**Question:** Do Mid laners have more kills at 25 minutes than ADCs?
+To investigate role-based performance, we tested whether **ADCs** (Attack Damage Carries) have a higher number of kills at the 25-minute mark than **Mid laners**.
 
-- **Null Hypothesis (H₀):** No difference in mean kills  
-- **Alternative Hypothesis (H₁):** Mid laners have more kills  
-- **Test Statistic:** Mean difference  
-- **Observed Difference:** −0.37  
-- **p-value:** 1.0  
+### Hypotheses
 
-✅ **Conclusion:** We fail to reject the null — ADCs actually had slightly more kills on average.
+- **Null Hypothesis (H₀):**  
+There is no difference in the mean number of kills at 25 minutes between Mid laners and ADCs.
+
+- **Alternative Hypothesis (H₁):**  
+ADCs have a higher mean number of kills at 25 minutes than Mid laners.
+
+### Test Details
+
+- **Test Statistic:** Mean difference in kills between Mid and ADC roles  
+- **Significance Level (α):** 0.05  
+- **Observed Mean Difference:** ~-0.3695
+- **P-value (from permutation test):** 0.0  
+
+
+### Interpretation
+
+We chose a permutation test with the mean difference in kills at 25 minutes as the test statistic, because our goal was to compare the average performance of Mid laners and ADCs. This choice offers a statistically valid and interpretable way to assess whether role impacts in-game performance and are appropriate given the exploratory nature of our dataset and question.
+
+The negative mean difference indicates that ADCs have, on average, more kills at 25 minutes than Mid laners. A p-value of 0.0 suggests this result is statistically significant at the 0.05 level. Thus, we reject the null hypothesis in favor of the alternative: **ADCs statistically outperform Mid laners** in kill count at the 25-minute mark, contrary to initial expectations.
 
 ---
 
