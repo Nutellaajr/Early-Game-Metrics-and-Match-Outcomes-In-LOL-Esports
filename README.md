@@ -1,5 +1,4 @@
 # Gold, Kills, and Victory: Predicting Match Outcomes in League of Legends
-This is a project for DSC 80 at UCSD
 
 **Name:** Yao Ouyang
 
@@ -7,8 +6,30 @@ This is a project for DSC 80 at UCSD
 
 ## Introduction
 
-In professional League of Legends (LoL) esports, early-game performance is often seen as a key predictor of a team’s eventual victory. Metrics such as gold earned and kills secured in the first 25 minutes may offer meaningful insight into game momentum and team coordination. This project investigates whether these mid-game indicators — specifically, kills and gold at 25 minutes — can be used to predict match outcomes.
-We also explore role-based performance dynamics, comparing Mid laners and ADCs (Bot lane carries) to test common beliefs about who “carries” more often. Using data from Oracle’s Elixir, which includes statistics from hundreds of professional matches, we analyze trends across positions, assess missing data patterns, and build predictive models to classify wins and losses. Finally, we evaluate whether the model performs fairly across different regions — a key consideration in ensuring equitable performance in esports analytics.
+In professional League of Legends (LoL) esports, early-game performance is often seen as a key predictor of a team’s eventual victory.  
+Metrics such as gold earned and kills secured in the first 25 minutes may offer meaningful insight into game momentum and team coordination.  
+This project investigates whether these mid-game indicators — specifically, kills and gold at 25 minutes — can be used to predict match outcomes.
+
+We also explore role-based performance dynamics, comparing **Mid laners** and **ADCs** (Bot lane carries) to test common beliefs about who “carries” more often.  
+Using data from Oracle’s Elixir, which includes statistics from hundreds of professional matches, we analyze trends across positions, assess missing data patterns, and build predictive models to classify wins and losses.  
+Finally, we evaluate whether the model performs fairly across different regions — a key consideration in ensuring equitable performance in esports analytics.
+
+The dataset contains over **70,000 rows**, each representing an individual player or team’s performance in a single professional match.  
+The columns most relevant to our analysis include:
+
+- `killsat25`: Number of champion kills by a player or team at the 25-minute mark  
+- `goldat25`: Total gold earned by that point in the match  
+- `position`: The player's in-game role (e.g., Mid, Bot, Jungle, Top, Support, or team)  
+- `role`: A simplified classification used to distinguish Mid laners from ADCs  
+- `result`: Binary outcome indicating if the player’s team won (`1`) or lost (`0`) the match
+
+These features allow us to explore two central questions:
+
+1. **Can we predict whether a team will win a match based on their kills and gold at 25 minutes?**  
+2. **Do Mid laners contribute more early-game action than ADCs, as commonly believed?**
+
+---
+
 
 ---
 
