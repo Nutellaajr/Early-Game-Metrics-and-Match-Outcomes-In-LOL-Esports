@@ -91,15 +91,15 @@ Despite the perception that Mid laners are the primary “carry” role, Bot lan
 
 We also created grouped tables to summarize average performance by role:
 
-| Role | Avg Kills at 25 | Avg Gold at 25 |
-|------|------------------|----------------|
-| Mid  | 3.2              | 8350           |
-| ADC  | 2.4              | 7900           |
-| Jungle | 3.0            | 8200           |
-| Top  | 2.1              | 7650           |
-| Support | 0.9           | 6100           |
+| position | Avg Kills at 25 | Avg Gold at 25 |
+|------|------------------|----------------   |
+| bot  | 2.8              | 10055.7           |
+| jng  | 2.3              | 8883.5            |
+| mid  | 2.5              | 9739.9            |
+| sup  | 0.7              | 6020.9            |
+| top  | 1.9              | 9207.9            |
 
-These aggregates reinforce the idea that **Mid laners** consistently outperform ADCs in both kills and gold at the 25-minute mark — motivating the hypothesis test in the next section.
+These aggregates show Bot lane (ADCs) have the highest average kills and gold at 25 minutes, suggesting that this position receives the most resources and has a strong early-game impact. Mid laners follow closely, with a solid average of kills and gold, showing that they are also central to early skirmishes and team success. This motivates the hypothesis test in the later section.
 
 ---
 
