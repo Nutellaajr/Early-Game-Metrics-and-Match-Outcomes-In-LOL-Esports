@@ -191,13 +191,21 @@ We only included features that are known during the game and excluded any post-m
 
 ## Baseline Model
 
-We built a logistic regression using `killsat25` and `goldat25`, scaled using `StandardScaler`, and trained with `train_test_split(random_state=42)`.
 
-**Test Accuracy:** ~0.61  
-**Precision (win):** 0.63  
-**Recall (win):** 0.49  
+We developed a baseline classification model to predict whether a team would win a match based on their **kills** and **gold** at the 25-minute mark. Both features, `killsat25` and `goldat25`, are **quantitative** numerical variables and required no encoding. The target variable, `result`, is a binary categorical variable where `1` indicates a win and `0` indicates a loss.
 
-The model shows decent ability to use early-game metrics to predict victory.
+We used a **Logistic Regression** classifier implemented in a `scikit-learn` pipeline. The pipeline includes a `StandardScaler` to normalize the input features and a `LogisticRegression()` model to perform binary classification. The dataset was split into training and testing sets using an 80-20 ratio.
+
+We evaluated the performance of our baseline model using **accuracy** and the **classification report** (which includes precision, recall, and F1-score). The model achieved an accuracy of approximately **65%** on the test set. Below is the breakdown of performance:
+
+- **Precision**: 0.59 (win class), 0.63 (loss class)
+- **Recall**: 0.71 (win class), 0.49 (loss class)
+- **F1-score**: 0.64 (win class), 0.55 (loss class)
+
+These results show that while the model performs moderately well, especially in detecting wins, it struggles with predicting losses. This imbalance may be addressed in future modeling steps by engineering additional features or addressing potential class imbalance.
+
+Although not highly accurate, this baseline model provides a meaningful starting point for evaluating the predictive power of early-game metrics and guides improvements in future iterations.
+
 
 ---
 
