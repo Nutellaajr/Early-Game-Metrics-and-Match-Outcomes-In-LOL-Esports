@@ -196,16 +196,28 @@ We developed a baseline classification model to predict whether a team would win
 
 We used a **Logistic Regression** classifier implemented in a `scikit-learn` pipeline. The pipeline includes a `StandardScaler` to normalize the input features and a `LogisticRegression()` model to perform binary classification. The dataset was split into training and testing sets using an 80-20 ratio.
 
-We evaluated the performance of our baseline model using **accuracy** and the **classification report** (which includes precision, recall, and F1-score). The model achieved an accuracy of approximately **65%** on the test set. Below is the breakdown of performance:
+We evaluated the performance of our baseline model using **accuracy** and the **classification report** (which includes precision, recall, and F1-score). The model achieved an accuracy of approximately **0.605** on the test set. Below is the breakdown of performance:
 
-- **Precision**: 0.59 (win class), 0.63 (loss class)
-- **Recall**: 0.71 (win class), 0.49 (loss class)
-- **F1-score**: 0.64 (win class), 0.55 (loss class)
+- **Class 0 (loss)**:
+  - Precision: 0.59
+  - Recall: 0.71
+  - F1-score: 0.65
+- **Class 1 (win)**:
+  - Precision: 0.63
+  - Recall: 0.49
+  - F1-score: 0.55
 
-These results show that while the model performs moderately well, especially in detecting wins, it struggles with predicting losses. This imbalance may be addressed in future modeling steps by engineering additional features or addressing potential class imbalance.
+- **Macro Average**:
+  - Precision: 0.61
+  - Recall: 0.60
+  - F1-score: 0.60
 
-Although not highly accurate, this baseline model provides a meaningful starting point for evaluating the predictive power of early-game metrics and guides improvements in future iterations.
+- **Weighted Average**:
+  - Precision: 0.61
+  - Recall: 0.61
+  - F1-score: 0.60
 
+This baseline model offers moderate predictive power, especially favoring the correct identification of losses over wins. The imbalance in recall suggests potential room for improvement, particularly in detecting wins. In future steps, we will experiment with additional features and model tuning to improve fairness and accuracy across both classes.
 
 ---
 
