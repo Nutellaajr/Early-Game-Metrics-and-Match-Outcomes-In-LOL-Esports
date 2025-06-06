@@ -44,12 +44,13 @@ We also **excluded rows** where the `position` column was `"team"` to focus only
 Here is the head of our cleaned DataFrame:
 
 | playername | position | role | killsat25 | goldat25 | result |
-| ---------- | -------- | ---- | --------- | -------- | ------ |
-| Faker      | mid      | Mid  | 4         | 8200     | 1      |
-| Ruler      | bot      | ADC  | 2         | 7500     | 1      |
-| Knight     | mid      | Mid  | 3         | 7700     | 0      |
-| GALA       | bot      | ADC  | 5         | 8800     | 1      |
-| Caps       | mid      | Mid  | 6         | 9300     | 0      |
+|------------|----------|------|-----------|----------|--------|
+| Sayn       | mid      | Mid  | 1.0       | 8488.0   | 0      |
+| Shiganari  | bot      | ADC  | 1.0       | 9097.0   | 0      |
+| Nafkelah   | mid      | Mid  | 1.0       | 10040.0  | 1      |
+| Soldier    | bot      | ADC  | 6.0       | 11710.0  | 1      |
+| xKenzuke   | mid      | Mid  | 4.0       | 10940.0  | 1      |
+
 
 
 ---
