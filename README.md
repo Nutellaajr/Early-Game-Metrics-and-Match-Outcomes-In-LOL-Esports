@@ -16,17 +16,31 @@ Using data from Oracle’s Elixir, we analyze the predictive power of gold and k
 
 ---
 
+
 ## Data Cleaning and Exploratory Data Analysis
 
-We cleaned the dataset by removing columns with over 50% missing values and focusing on rows where `gamelength ≥ 1500s` (25 minutes). Missing values in categorical columns were replaced with `'Unknown'`, and numeric ones filled with median values. 
+We cleaned the dataset by removing columns with over 50% missing values and focusing on rows where `gamelength ≥ 1500s` (25 minutes).  
+Missing values in categorical columns were replaced with `'Unknown'`, and numeric ones filled with median values.
 
 We focused our early analysis on the performance of Mid laners and ADCs at 25 minutes.
 
-**Plots:**
+---
 
-<iframe src="assets/killsat25-mid.html" width="800" height="600" frameborder="0"></iframe>  
-<iframe src="assets/killsat25-adc.html" width="800" height="600" frameborder="0"></iframe>  
-<iframe src="assets/mid-vs-adc-distribution.html" width="800" height="600" frameborder="0"></iframe>
+### 🔹 Mid laners only
+<iframe src="assets/killsat25-mid.html" width="800" height="500" frameborder="0"></iframe>
+
+### 🔹 ADCs only
+<iframe src="assets/killsat25-adc.html" width="800" height="500" frameborder="0"></iframe>
+
+### 🔹 Combined Mid vs ADC distribution
+<iframe src="assets/killsat25-combine.html" width="800" height="500" frameborder="0"></iframe>
+
+### 🔹 Kill distribution by all roles
+<iframe src="assets/killsat25-by-role.html" width="800" height="500" frameborder="0"></iframe>
+
+### 🔹 Kills vs Gold at 25 Minutes by position
+<iframe src="assets/killsat25-goldat25-by-position.html" width="800" height="500" frameborder="0"></iframe>
+
 
 ---
 
