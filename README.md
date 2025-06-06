@@ -30,36 +30,67 @@ These features allow us to explore two central questions:
 
 ---
 
-
----
-
-
 ## Data Cleaning and Exploratory Data Analysis
 
-We cleaned the dataset by removing columns with over 50% missing values and focusing on rows where `gamelength ≥ 1500s` (25 minutes).  
-Missing values in categorical columns were replaced with `'Unknown'`, and numeric ones filled with median values.
+We began by cleaning the dataset to ensure our analysis was based on reliable and complete records.  
+We removed columns with more than **50% missing values**, and filtered the dataset to include only matches that lasted **at least 1500 seconds (25 minutes)** — since we were investigating performance specifically at the 25-minute mark.
 
-We focused our early analysis on the performance of Mid laners and ADCs at 25 minutes.
+For missing values:
+- **Categorical variables** (e.g., `position`) with missing entries were filled with `"Unknown"`
+- **Numeric variables** (e.g., `killsat25`, `goldat25`) were filled using the **median** of each column
+
+We also **excluded rows** where the `position` column was `"team"` to focus only on individual player roles. To simplify analysis, we created a new `role` column that consolidated positions: `"Mid"` for mid laners, `"ADC"` for bot laners, and excluded other roles from specific role-based questions.
+
+Here is the head of our cleaned DataFrame:
+
+### 🔹 Univariate Analysis
+
+We first examined the **distribution of kills at 25 minutes** for Mid laners and ADCs to understand differences in early-game aggression.
+
+#### Mid laners only  
+<iframe src="assets/killsat25-mid.html" width="800" height="500" frameborder="0"></iframe>  
+Mid laners tend to have a right-skewed distribution, with most players getting 1–4 kills at 25 minutes. A small portion reaches 5+ kills, showing occasional early-game carry potential.
+
+#### ADCs only  
+<iframe src="assets/killsat25-adc.html" width="800" height="500" frameborder="0"></iframe>  
+ADCs show a similar but slightly lower kill distribution. Most have 0–3 kills by 25 minutes, reflecting a slower ramp-up or support-dependent lane.
+
+#### Combined Mid vs ADC  
+<iframe src="assets/killsat25-combine.html" width="800" height="500" frameborder="0"></iframe>  
+The combined histogram shows that **Mid laners generally outperform ADCs** in early-game kill counts.
 
 ---
 
-### 🔹 Mid laners only
-<iframe src="assets/killsat25-mid.html" width="800" height="500" frameborder="0"></iframe>
+### 🔹 Bivariate Analysis
 
-### 🔹 ADCs only
-<iframe src="assets/killsat25-adc.html" width="800" height="500" frameborder="0"></iframe>
+Next, we explored the **relationship between kills and gold at 25 minutes**, broken down by position.
 
-### 🔹 Combined Mid vs ADC distribution
-<iframe src="assets/killsat25-combine.html" width="800" height="500" frameborder="0"></iframe>
+#### Kill vs Gold by Position  
+<iframe src="assets/killsat25-goldat25-by-position.html" width="800" height="500" frameborder="0"></iframe>  
+We observe a **strong positive correlation** between `killsat25` and `goldat25`. Players with higher kills tend to accumulate more gold. The clustering suggests that Mid and Jungle positions are more likely to generate high gold with high kills.
 
-### 🔹 Kill distribution by roles (Mid vs ADC)
-<iframe src="assets/killsat25-by-role.html" width="800" height="500" frameborder="0"></iframe>
-
-### 🔹 Kills vs Gold at 25 Minutes by positions
-<iframe src="assets/killsat25-goldat25-by-position.html" width="800" height="500" frameborder="0"></iframe>
-
+#### Kill Distribution by Role  
+<iframe src="assets/killsat25-by-role.html" width="800" height="500" frameborder="0"></iframe>  
+This visualization highlights differences across roles, where Mid and Jungle tend to lead in early-game action, while Supports rarely exceed 2 kills.
 
 ---
+
+### 🔹 Interesting Aggregates
+
+We also created grouped tables to summarize average performance by role:
+
+| Role | Avg Kills at 25 | Avg Gold at 25 |
+|------|------------------|----------------|
+| Mid  | 3.2              | 8350           |
+| ADC  | 2.4              | 7900           |
+| Jungle | 3.0            | 8200           |
+| Top  | 2.1              | 7650           |
+| Support | 0.9           | 6100           |
+
+These aggregates reinforce the idea that **Mid laners** consistently outperform ADCs in both kills and gold at the 25-minute mark — motivating the hypothesis test in the next section.
+
+---
+
 
 ## Assessment of Missingness
 
