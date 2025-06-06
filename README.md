@@ -43,6 +43,8 @@ We also **excluded rows** where the `position` column was `"team"` to focus only
 
 Here is the head of our cleaned DataFrame:
 
+---
+
 ### 🔹 Univariate Analysis
 
 We first examined the **distribution of kills at 25 minutes** for Mid laners and ADCs to understand differences in early-game aggression.
