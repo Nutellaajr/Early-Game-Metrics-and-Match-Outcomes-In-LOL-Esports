@@ -138,7 +138,6 @@ This histogram shows clear differences in `firstblood` outcomes between rows whe
 ---
 
 
-
 ## Hypothesis Testing
 
 To investigate role-based performance, we tested whether **ADCs** (Attack Damage Carries) have a higher number of kills at the 25-minute mark than **Mid laners**.
@@ -169,10 +168,24 @@ The negative mean difference indicates that ADCs have, on average, more kills at
 
 ## Framing a Prediction Problem
 
-**Question:** Can we predict whether a team will win a match using only kills and gold at 25 minutes?
+Our prediction task is to **predict whether a team will win a match** based on their in-game performance at the 25-minute mark. This is a **binary classification** problem because the outcome variable is either a win (1) or a loss (0).
 
-- **Type:** Binary classification  
-- **Target column:** `result` (1 = win, 0 = loss)
+### Response Variable:
+- `result`: 1 if the team won the match, 0 if they lost.
+
+### Features:
+- `killsat25`: Number of kills the team secured by 25 minutes.
+- `goldat25`: Total gold the team accumulated by 25 minutes.
+
+These features were chosen because they reflect team performance during the early and mid-game phases, which are available at the **time of prediction** (25-minute mark). This ensures we are not using information that would only be known after the match is over, preventing data leakage.
+
+### Type of Prediction:
+- **Binary Classification**
+
+### Evaluation Metric:
+- **Accuracy**: We use accuracy to evaluate model performance because the dataset has a relatively balanced distribution of wins and losses, and accuracy provides a straightforward interpretation of predictive success.
+
+We only included features that are known during the game and excluded any post-match statistics to ensure the model mimics a real-time prediction setting.
 
 ---
 
