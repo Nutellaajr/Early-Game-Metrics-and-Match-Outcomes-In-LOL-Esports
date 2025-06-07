@@ -55,7 +55,7 @@ Here is the head of our cleaned DataFrame:
 
 ---
 
-### 🔹 Univariate Analysis
+### Univariate Analysis
 
 We first examined the **distribution of kills at 25 minutes** for Mid laners and ADCs to understand differences in early-game aggression.
 
@@ -73,7 +73,7 @@ This histogram shows that at 25 minutes, the mid laner had more low kills, while
 
 ---
 
-### 🔹 Bivariate Analysis
+###  Bivariate Analysis
 
 Next, we explored the **relationship between kills and gold at 25 minutes**, broken down by position.
 
@@ -87,7 +87,7 @@ Despite the perception that Mid laners are the primary “carry” role, Bot lan
 
 ---
 
-### 🔹 Interesting Aggregates
+###  Interesting Aggregates
 
 We also created grouped tables to summarize average performance by role:
 
@@ -304,5 +304,5 @@ We include a permutation test histogram below to illustrate the distribution of 
 
 ---
 
-### Thanks for reading! 🧠🏆  
+## Thanks for reading! 🧠🏆  
 This project highlights how simple metrics like gold and kills can explain — but not fully determine — match outcomes in esports. Even in pro games, the rift remains unpredictable.
