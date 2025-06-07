@@ -264,17 +264,44 @@ We consider this a meaningful performance gain and evidence that the Final Model
 
 ## Fairness Analysis
 
-**Question:** Does the model perform worse for minor-region teams?
+To assess whether our final model performs equitably across different groups, we conducted a **fairness permutation test**. Specifically, we investigated whether the model’s precision differs between players on the **Blue** side and those on the **Red** side in League of Legends matches.
 
-- **Group X:** Major regions (LCK, LPL, LCS, LEC)  
-- **Group Y:** Minor regions (all others)  
-- **Metric:** Precision  
-- **Observed Difference:** −0.0347 (minor < major)  
-- **p-value:** 0.062
+### Group Definition
 
-<iframe src="assets/fairness-precision.html" width="800" height="600" frameborder="0"></iframe>
+- **Group X (Blue side):** Players whose `side` value is `"Blue"`.
+- **Group Y (Red side):** Players whose `side` value is `"Red"`.
 
-✅ **Conclusion:** The model performs slightly worse for minor-region teams, but not significantly so at p < 0.05.
+We used the `side` column from Oracle’s dataset to define these groups, aligning each row in the test set with its original metadata by index.
+
+### Evaluation Metric and Hypotheses
+
+We used **precision** as our evaluation metric because our task is a binary classification (win vs. loss), and we wanted to understand how often our model's predicted wins were correct for each side.
+
+- **Null Hypothesis (H₀):** The model is fair with respect to team side. That is, precision is the same for Blue and Red sides.  
+  H₀: Δ = 0  
+- **Alternative Hypothesis (H₁):** The model is less precise for the Red side than the Blue side.  
+  H₁: Δ < 0 (where Δ = precision₍Red₎ − precision₍Blue₎)
+
+We used a **one-sided permutation test** with 10,000 permutations and set the significance level α = 0.05.
+
+### Observed Metrics
+
+- **Precision (Blue side):** 0.713  
+- **Precision (Red side):** 0.640  
+- **Observed Δ (Red − Blue):** -0.074  
+- **p-value (one-sided):** 0.0076
+
+### Conclusion
+
+Since the p-value (0.0076) is below our significance level (α = 0.05), we reject the null hypothesis. This suggests that our final model is **unfair** with respect to team side: it is **less precise** when predicting wins for players on the Red side than for those on the Blue side.
+
+### Visualization
+
+We include a permutation test histogram below to illustrate the distribution of Δ under the null hypothesis, with the observed statistic marked for reference:
+
+```html
+<iframe src="assets/side-fairness-permutation.html" width="800" height="500" frameborder="0"></iframe>
+
 
 ---
 
