@@ -10,9 +10,9 @@ In professional League of Legends (LoL) esports, early-game performance is often
 Metrics such as gold earned and kills secured in the first 25 minutes may offer meaningful insight into game momentum and team coordination.  
 This project investigates whether these mid-game indicators — specifically, kills and gold at 25 minutes — can be used to predict match outcomes.
 
-We also explore role-based performance dynamics, comparing **Mid laners** and **ADCs** (Bot lane carries) to test common beliefs about who “carries” more often.  
-Using data from Oracle’s Elixir, which includes statistics from hundreds of professional matches, we analyze trends across positions, assess missing data patterns, and build predictive models to classify wins and losses.  
-Finally, we evaluate whether the model performs fairly across different regions — a key consideration in ensuring equitable performance in esports analytics.
+I also explore role-based performance dynamics, comparing **Mid laners** and **ADCs** (Bot lane carries) to test common beliefs about who “carries” more often.  
+Using data from Oracle’s Elixir, which includes statistics from hundreds of professional matches, I analyze trends across positions, assess missing data patterns, and build predictive models to classify wins and losses.  
+Finally, I evaluate whether the model performs fairly across different regions — a key consideration in ensuring equitable performance in esports analytics.
 
 The dataset contains over **70,000 rows**, each representing an individual player or team’s performance in a single professional match.  
 The columns most relevant to our analysis include:
@@ -25,21 +25,21 @@ The columns most relevant to our analysis include:
 
 These features allow us to explore two central questions:
 
-1. **Can we predict whether a team will win a match based on their kills and gold at 25 minutes?**  
+1. **Can I predict whether a team will win a match based on their kills and gold at 25 minutes?**  
 2. **Do Mid laners contribute more early-game action than ADCs, as commonly believed?**
 
 ---
 
 ## Data Cleaning and Exploratory Data Analysis
 
-We began by cleaning the dataset to ensure our analysis was based on reliable and complete records.  
-We removed columns with more than **50% missing values**, and filtered the dataset to include only matches that lasted **at least 1500 seconds (25 minutes)** — since we were investigating performance specifically at the 25-minute mark.
+I began by cleaning the dataset to ensure our analysis was based on reliable and complete records.  
+I removed columns with more than **50% missing values**, and filtered the dataset to include only matches that lasted **at least 1500 seconds (25 minutes)** — since I was investigating performance specifically at the 25-minute mark.
 
 For missing values:
 - **Categorical variables** (e.g., `position`) with missing entries were filled with `"Unknown"`
 - **Numeric variables** (e.g., `killsat25`, `goldat25`) were filled using the **median** of each column
 
-We also **excluded rows** where the `position` column was `"team"` to focus only on individual player roles. To simplify analysis, we created a new `role` column that consolidated positions: `"Mid"` for mid laners, `"ADC"` for bot laners, and excluded other roles from specific role-based questions.
+I also **excluded rows** where the `position` column was `"team"` to focus only on individual player roles. To simplify analysis, I created a new `role` column that consolidated positions: `"Mid"` for mid laners, `"ADC"` for bot laners, and excluded other roles from specific role-based questions.
 
 Here is the head of our cleaned DataFrame:
 
@@ -57,7 +57,7 @@ Here is the head of our cleaned DataFrame:
 
 ### Univariate Analysis
 
-We first examined the **distribution of kills at 25 minutes** for Mid laners and ADCs to understand differences in early-game aggression.
+I first examined the **distribution of kills at 25 minutes** for Mid laners and ADCs to understand differences in early-game aggression.
 
 #### Mid laners only  
 <iframe src="assets/killsat25-mid.html" width="800" height="500" frameborder="0"></iframe>  
@@ -75,7 +75,7 @@ This histogram shows that at 25 minutes, the mid laner had more low kills, while
 
 ###  Bivariate Analysis
 
-Next, we explored the **relationship between kills and gold at 25 minutes**, broken down by position.
+Next, I explored the **relationship between kills and gold at 25 minutes**, broken down by position.
 
 #### Kill vs Gold by Position  
 <iframe src="assets/killsat25-goldat25-by-position.html" width="800" height="500" frameborder="0"></iframe>  
@@ -89,7 +89,7 @@ Despite the perception that Mid laners are the primary “carry” role, Bot lan
 
 ###  Interesting Aggregates
 
-We also created grouped tables to summarize average performance by role:
+I also created grouped tables to summarize average performance by role:
 
 | position | Avg Kills at 25 | Avg Gold at 25 |
 |------|------------------|----------------   |
@@ -106,11 +106,11 @@ These aggregates show Bot lane (ADCs) have the highest average kills and gold at
 
 ## Assessment of Missingness
 
-We hypothesized that the missingness of firstbloodvictim depends on whether the game recorded the first blood event. The presence of such an event is indicated by the first blood column (1 if a player secured first blood, 0 otherwise). If a match did not record the first blood, then logically no player can be recorded as the victim — making it plausible that this missingness is Missing At Random (MAR) rather than Missing Not At Random (NMAR). 
+I hypothesized that the missingness of firstbloodvictim depends on whether the game recorded the first blood event. The presence of such an event is indicated by the first blood column (1 if a player secured first blood, 0 otherwise). If a match did not record the first blood, then logically no player can be recorded as the victim — making it plausible that this missingness is Missing At Random (MAR) rather than Missing Not At Random (NMAR). 
 
-Based on the context of League of Legends (LoL), we suspect the missingness in `firstbloodvictim` is **MAR**, as the variable is likely to be missing in cases where first blood does not occur or is not recorded, which may relate to `firstblood`. If more game events are documented when first blood is secured, missingness would be related to observed game outcomes — making it MAR.
+Based on the context of League of Legends (LoL), I suspect the missingness in `firstbloodvictim` is **MAR**, as the variable is likely to be missing in cases where first blood does not occur or is not recorded, which may relate to `firstblood`. If more game events are documented when first blood is secured, missingness would be related to observed game outcomes — making it MAR.
 
-We conducted a **permutation test** to evaluate the dependency between the missingness of `firstbloodvictim` and the `firstblood` column. Our null hypothesis was:
+I conducted a **permutation test** to evaluate the dependency between the missingness of `firstbloodvictim` and the `firstblood` column. Our null hypothesis was:
 
 > **Null Hypothesis:** The missingness of `firstbloodvictim` is independent of the `firstblood` value.
 
@@ -118,7 +118,7 @@ We conducted a **permutation test** to evaluate the dependency between the missi
 
 ### Permutation Test Result
 
-We calculated an observed difference in missingness rates and compared it to the distribution of permuted differences generated by randomly shuffling the `firstblood` labels.
+I calculated an observed difference in missingness rates and compared it to the distribution of permuted differences generated by randomly shuffling the `firstblood` labels.
 
 <iframe src="assets/permutation_missingness_test.html" width="800" height="500" frameborder="0"></iframe>
 
@@ -129,7 +129,7 @@ This result provides strong evidence that the missingness in `firstbloodvictim` 
 
 ### Conditional Distribution of Firstblood
 
-To further illustrate this dependency, we visualized the distribution of `firstblood` when `firstbloodvictim` is missing versus not missing:
+To further illustrate this dependency, I visualized the distribution of `firstblood` when `firstbloodvictim` is missing versus not missing:
 
 <iframe src="assets/Distribution_Missingness.html" width="800" height="500" frameborder="0"></iframe>
 
@@ -140,7 +140,7 @@ This histogram shows clear differences in `firstblood` outcomes between rows whe
 
 ## Hypothesis Testing
 
-To investigate role-based performance, we tested whether **ADCs** (Attack Damage Carries) have a higher number of kills at the 25-minute mark than **Mid laners**.
+To investigate role-based performance, I tested whether **ADCs** (Attack Damage Carries) have a higher number of kills at the 25-minute mark than **Mid laners**.
 
 ### Hypotheses
 
@@ -160,7 +160,7 @@ ADCs have a higher mean number of kills at 25 minutes than Mid laners.
 
 ### Interpretation
 
-We chose a permutation test with the mean difference in kills at 25 minutes as the test statistic, because our goal was to compare the average performance of Mid laners and ADCs. This choice offers a statistically valid and interpretable way to assess whether role impacts in-game performance and are appropriate given the exploratory nature of our dataset and question.
+I chose a permutation test with the mean difference in kills at 25 minutes as the test statistic, because our goal was to compare the average performance of Mid laners and ADCs. This choice offers a statistically valid and interpretable way to assess whether role impacts in-game performance and are appropriate given the exploratory nature of our dataset and question.
 
 The negative mean difference indicates that ADCs have, on average, more kills at 25 minutes than Mid laners. A p-value of 0.0 suggests this result is statistically significant at the 0.05 level. Thus, we reject the null hypothesis in favor of the alternative: **ADCs statistically outperform Mid laners** in kill count at the 25-minute mark, contrary to initial expectations.
 
@@ -183,20 +183,20 @@ These features were chosen because they reflect team performance during the earl
 - **Binary Classification**
 
 ### Evaluation Metric:
-- **Accuracy**: We use accuracy to evaluate model performance because the dataset has a relatively balanced distribution of wins and losses, and accuracy provides a straightforward interpretation of predictive success.
+- **Accuracy**: I use accuracy to evaluate model performance because the dataset has a relatively balanced distribution of wins and losses, and accuracy provides a straightforward interpretation of predictive success.
 
-We only included features that are known during the game and excluded any post-match statistics to ensure the model mimics a real-time prediction setting.
+I only included features that are known during the game and excluded any post-match statistics to ensure the model mimics a real-time prediction setting.
 
 ---
 
 ## Baseline Model
 
 
-We developed a baseline classification model to predict whether a team would win a match based on their **kills** and **gold** at the 25-minute mark. Both features, `killsat25` and `goldat25`, are **quantitative** numerical variables and required no encoding. The target variable, `result`, is a binary categorical variable where `1` indicates a win and `0` indicates a loss.
+I developed a baseline classification model to predict whether a team would win a match based on their **kills** and **gold** at the 25-minute mark. Both features, `killsat25` and `goldat25`, are **quantitative** numerical variables and required no encoding. The target variable, `result`, is a binary categorical variable where `1` indicates a win and `0` indicates a loss.
 
-We used a **Logistic Regression** classifier implemented in a `scikit-learn` pipeline. The pipeline includes a `StandardScaler` to normalize the input features and a `LogisticRegression()` model to perform binary classification. The dataset was split into training and testing sets using an 80-20 ratio.
+I used a **Logistic Regression** classifier implemented in a `scikit-learn` pipeline. The pipeline includes a `StandardScaler` to normalize the input features and a `LogisticRegression()` model to perform binary classification. The dataset was split into training and testing sets using an 80-20 ratio.
 
-We evaluated the performance of our baseline model using **accuracy** and the **classification report** (which includes precision, recall, and F1-score). The model achieved an accuracy of approximately **0.605** on the test set. Below is the breakdown of performance:
+I evaluated the performance of our baseline model using **accuracy** and the **classification report** (which includes precision, recall, and F1-score). The model achieved an accuracy of approximately **0.605** on the test set. Below is the breakdown of performance:
 
 - **Class 0 (loss)**:
   - Precision: 0.59
@@ -218,18 +218,18 @@ We evaluated the performance of our baseline model using **accuracy** and the **
   - Recall: 0.61
   - F1-score: 0.60
 
-This baseline model offers moderate predictive power, especially favoring the correct identification of losses over wins. The imbalance in recall suggests potential room for improvement, particularly in detecting wins. In future steps, we will experiment with additional features and model tuning to improve fairness and accuracy across both classes.
+This baseline model offers moderate predictive power, especially favoring the correct identification of losses over wins. The imbalance in recall suggests potential room for improvement, particularly in detecting wins. In future steps, I will experiment with additional features and model tuning to improve fairness and accuracy across both classes.
 
 ---
 
 
 ## Final Model
 
-To improve upon our Baseline Model, we added two new features: `firstblood` and `firstdragon`. These features are categorical indicators of whether the team secured the first kill or the first dragon in a match, respectively. From a game dynamics perspective, these are strong early-game objectives that often reflect early momentum and map control — factors that can significantly influence a team's chance of winning. Including them captures more of the team’s performance in the first 25 minutes and complements our initial features, `killsat25` and `goldat25`.
+To improve upon our Baseline Model, I added two new features: `firstblood` and `firstdragon`. These features are categorical indicators of whether the team secured the first kill or the first dragon in a match, respectively. From a game dynamics perspective, these are strong early-game objectives that often reflect early momentum and map control — factors that can significantly influence a team's chance of winning. Including them captures more of the team’s performance in the first 25 minutes and complements our initial features, `killsat25` and `goldat25`.
 
-Since our target variable `result` is binary (win/loss), we used a classification approach. For our final model, we chose a `RandomForestClassifier`, which is well-suited to handle both numerical and categorical inputs, and captures nonlinear interactions between features without requiring extensive preprocessing. We used a pipeline to preprocess the data: numerical features were standardized using `StandardScaler`, and categorical features were one-hot encoded with `OneHotEncoder`.
+Since our target variable `result` is binary (win/loss), I used a classification approach. For our final model, I chose a `RandomForestClassifier`, which is well-suited to handle both numerical and categorical inputs, and captures nonlinear interactions between features without requiring extensive preprocessing. I used a pipeline to preprocess the data: numerical features were standardized using `StandardScaler`, and categorical features were one-hot encoded with `OneHotEncoder`.
 
-We did not tune hyperparameters in this iteration, but we used `random_state=42` to ensure reproducibility. This model was trained using an 80/20 train-test split.
+I did not tune hyperparameters in this iteration, but I used `random_state=42` to ensure reproducibility. This model was trained using an 80/20 train-test split.
 
 ### Model Performance
 
@@ -257,32 +257,32 @@ Our Final Model achieved a test accuracy of **0.707**, improving over the Baseli
 
 The improvement suggests that `firstblood` and `firstdragon` provide valuable early-game signals not captured by kills and gold alone. This confirms our hypothesis that capturing early strategic objectives is important for predicting match outcomes in professional League of Legends esports games.
 
-We consider this a meaningful performance gain and evidence that the Final Model captures the game’s dynamics more comprehensively than the baseline.
+I consider this a meaningful performance gain and evidence that the Final Model captures the game’s dynamics more comprehensively than the baseline.
 
 
 ---
 
 ## Fairness Analysis
 
-To assess whether our final model performs equitably across different groups, we conducted a **fairness permutation test**. Specifically, we investigated whether the model’s precision differs between players on the **Blue** side and those on the **Red** side in League of Legends matches.
+To assess whether our final model performs equitably across different groups, I conducted a **fairness permutation test**. Specifically, I investigated whether the model’s precision differs between players on the **Blue** side and those on the **Red** side in League of Legends matches.
 
 ### Group Definition
 
 - **Group X (Blue side):** Players whose `side` value is `"Blue"`.
 - **Group Y (Red side):** Players whose `side` value is `"Red"`.
 
-We used the `side` column from Oracle’s dataset to define these groups, aligning each row in the test set with its original metadata by index.
+I used the `side` column from Oracle’s dataset to define these groups, aligning each row in the test set with its original metadata by index.
 
 ### Evaluation Metric and Hypotheses
 
-We used **precision** as our evaluation metric because our task is a binary classification (win vs. loss), and we wanted to understand how often our model's predicted wins were correct for each side.
+I used **precision** as our evaluation metric because our task is a binary classification (win vs. loss), and I wanted to understand how often our model's predicted wins were correct for each side.
 
 - **Null Hypothesis (H₀):** The model is fair with respect to team side. That is, precision is the same for Blue and Red sides.  
   H₀: Δ = 0  
 - **Alternative Hypothesis (H₁):** The model is less precise for the Red side than the Blue side.  
   H₁: Δ < 0 (where Δ = precision_Red − precision_Blue)
 
-We used a **one-sided permutation test** with 10,000 permutations and set the significance level α = 0.05.
+I used a **one-sided permutation test** with 10,000 permutations and set the significance level α = 0.05.
 
 ### Observed Metrics
 
@@ -293,11 +293,11 @@ We used a **one-sided permutation test** with 10,000 permutations and set the si
 
 ### Conclusion
 
-Since the p-value (0.0076) is below our significance level (α = 0.05), we reject the null hypothesis. This suggests that our final model is **unfair** with respect to team side: it is **less precise** when predicting wins for players on the Red side than for those on the Blue side.
+Since the p-value (0.0076) is below our significance level (α = 0.05), I reject the null hypothesis. This suggests that our final model is **unfair** with respect to team side: it is **less precise** when predicting wins for players on the Red side than for those on the Blue side.
 
 ### Visualization
 
-We include a permutation test histogram below to illustrate the distribution of Δ under the null hypothesis, with the observed statistic marked for reference:
+I include a permutation test histogram below to illustrate the distribution of Δ under the null hypothesis, with the observed statistic marked for reference:
 
 <iframe src="assets/Precision_Difference.html" width="800" height="500" frameborder="0"></iframe>
 
