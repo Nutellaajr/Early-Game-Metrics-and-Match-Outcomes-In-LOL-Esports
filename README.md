@@ -280,7 +280,7 @@ We used **precision** as our evaluation metric because our task is a binary clas
 - **Null Hypothesis (H₀):** The model is fair with respect to team side. That is, precision is the same for Blue and Red sides.  
   H₀: Δ = 0  
 - **Alternative Hypothesis (H₁):** The model is less precise for the Red side than the Blue side.  
-  H₁: Δ < 0 (where Δ = precision₍Red₎ − precision₍Blue₎)
+  H₁: Δ < 0 (where Δ = precision_Red − precision_Blue)
 
 We used a **one-sided permutation test** with 10,000 permutations and set the significance level α = 0.05.
 
