@@ -299,8 +299,7 @@ Since the p-value (0.0076) is below our significance level (α = 0.05), we rejec
 
 We include a permutation test histogram below to illustrate the distribution of Δ under the null hypothesis, with the observed statistic marked for reference:
 
-```html
-<iframe src="assets/side-fairness-permutation.html" width="800" height="500" frameborder="0"></iframe>
+<iframe src="assets/Precision_Difference.html" width="800" height="500" frameborder="0"></iframe>
 
 
 ---
